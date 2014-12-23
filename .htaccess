@@ -1,0 +1,5 @@
+RewriteEngine On
+#RewriteLog "D:/Wamp/logs/rewrite.log"
+#RewriteLogLevel 9
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php
