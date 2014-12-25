@@ -18,4 +18,18 @@ class UserModel extends Core_ModelMain{
         $result = $this->where(array("login"=>$name))->find();
         return $result;
     }
+
+    public function insertUser($data){
+        $formate = $this->data_formate($data);
+        $result = $this->add($formate);
+        return $result;
+    }
+
+    private function data_formate($data){
+        $formate = array();
+        $formate['login'] = $data['login'];
+        $formate['pwd'] = $data['pwd'];
+        $formate['email'] = $data['email'];
+        return $formate;
+    }
 }

@@ -8,10 +8,6 @@ class ConsoleController extends BaseController{
 	}
 	
 	public function indexAction(){
-		xhprof_enable();
 		$this->pJaxRender();
-		$xhprof_data = xhprof_disable();
-		print_r($xhprof_data);
-
 	}
 }

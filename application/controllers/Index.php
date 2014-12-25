@@ -35,6 +35,27 @@ class IndexController extends BaseController {
 		}
 		return false;
 	}
+
+	/**
+	 * 用户注册
+	 */
+	public function doRegistAction(){
+		$data = $this->getRequest()->getPost();
+		$userM = D("User");
+		$user = $userM->selectUser($data['login']);
+		if(!$user){
+			$result = $userM->insertUser($data);
+			if($result){
+				Yaf\Session::getInstance()->__set("user",array("username"=>$data['login'],"nick"=>$data['login']));
+				echo json_encode(array("code"=>200));
+			}else{
+				echo json_encode(array("code"=>201));
+			}
+		}else{
+			echo json_encode(array("code"=>199));
+		}
+		return false;
+	}
 	
 	public function doLogoutAction(){
         Yaf\Session::getInstance()->del("user");

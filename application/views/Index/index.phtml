@@ -192,46 +192,44 @@
                                     <div class="space-6"></div>
                                     <p> Enter your details to begin: </p>
 
-                                    <form>
+                                    <form id="registForm">
                                         <fieldset>
                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control"
-                                                                   placeholder="Email"/>
-															<i class="icon-envelope"></i>
-														</span>
+                                                <span class="block input-icon input-icon-right">
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                           placeholder="Email"/>
+                                                    <i class="icon-envelope"></i>
+                                                </span>
                                             </label>
 
                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control"
-                                                                   placeholder="Username"/>
-															<i class="icon-user"></i>
-														</span>
+                                                <span class="block input-icon input-icon-right">
+                                                    <input type="text" class="form-control" id="username"
+                                                           name="login" placeholder="Username"/>
+                                                    <i class="icon-user"></i>
+                                                </span>
                                             </label>
 
                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control"
-                                                                   placeholder="Password"/>
-															<i class="icon-lock"></i>
-														</span>
+                                                <span class="block input-icon input-icon-right">
+                                                    <input type="password" class="form-control" id="password"
+                                                           name="pwd" placeholder="Password"/>
+                                                    <i class="icon-lock"></i>
+                                                </span>
                                             </label>
 
                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control"
-                                                                   placeholder="Repeat password"/>
-															<i class="icon-retweet"></i>
-														</span>
+                                                <span class="block input-icon input-icon-right">
+                                                    <input type="password" class="form-control" id="repassword" name="repwd" placeholder="Repeat password"/>
+                                                    <i class="icon-retweet"></i>
+                                                </span>
                                             </label>
 
                                             <label class="block">
-                                                <input type="checkbox" class="ace"/>
-														<span class="lbl">
-															I accept the
-															<a href="#">User Agreement</a>
-														</span>
+                                                <input type="checkbox" id="agree" name="agree" class="ace"/>
+                                                <span class="lbl">
+                                                    I accept the<a href="#">User Agreement</a>
+                                                </span>
                                             </label>
 
                                             <div class="space-24"></div>
@@ -242,7 +240,7 @@
                                                     Reset
                                                 </button>
 
-                                                <button type="button"
+                                                <button id="regist" type="button"
                                                         class="width-65 pull-right btn btn-sm btn-success">
                                                     Register
                                                     <i class="icon-arrow-right icon-on-right"></i>
@@ -276,6 +274,7 @@
 
 <!-- basic scripts -->
 <script src="/public/assets/js/jquery-2.0.3.min.js"></script>
+<script src="/public/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
     function show_box(id) {
         jQuery('.widget-box.visible').removeClass('visible');
@@ -288,6 +287,84 @@
         $.post("/index/index/doLogin", data, function (json) {
             if (json.code == 200) {
                 self.location.href = "/console/";
+            }
+        }, "JSON");
+    });
+    jQuery(function ($) {
+        $("#registForm").validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: true,
+            debug: true,
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                repassword: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                username: {
+                    required: true
+                },
+                agree: 'required'
+            },
+
+            messages: {
+                email: {
+                    required: "Please provide a valid email.",
+                    email: "Please provide a valid email."
+                },
+                username: {
+                    required: "Please"
+                },
+                password: {
+                    required: "Please specify a password.",
+                    minlength: "Please specify a secure password."
+                },
+                agree: "Please accept our policy"
+            },
+
+            invalidHandler: function (event, validator) { //display error alert on form submit
+//                $('.alert-danger', $('#registForm')).show();
+            },
+
+            highlight: function (e) {
+                $(e).next("i").removeClass('green').addClass('red');
+                $(e).parent().parent("label").removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).parent().removeClass('has-error').addClass('has-info');
+                $(e).prev().find("i").removeClass('red').addClass('green');
+                $(e).remove();
+            },
+            errorPlacement: function (error, element) {
+                if (element.is(':checkbox') || element.is(':radio')) {
+                    var controls = element.closest('.block');
+                    if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                }
+                else error.insertAfter(element.parent());
+            }
+        });
+    });
+    $("#regist").click(function () {
+        if (!$('#registForm').valid()) return false;
+       var data = $("#registForm").serialize();
+        $.post("/index/index/doRegist", data, function (json) {
+            if (json.code == 200) {
+                self.location.href = "/console/";
+            }else if(json.code == 199){
+                alert("该用户名已经被注册!");
+            }else if(json.code == 201){
+                alert("似乎除了点问题,再试试吧!");
             }
         }, "JSON");
     });
