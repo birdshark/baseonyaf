@@ -204,7 +204,7 @@
 
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    <input type="text" class="form-control" id="username"
+                                                    <input type="text" class="form-control" id="login"
                                                            name="login" placeholder="Username"/>
                                                     <i class="icon-user"></i>
                                                 </span>
@@ -212,7 +212,7 @@
 
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    <input type="password" class="form-control" id="password"
+                                                    <input type="password" class="form-control" id="pwd"
                                                            name="pwd" placeholder="Password"/>
                                                     <i class="icon-lock"></i>
                                                 </span>
@@ -220,7 +220,7 @@
 
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    <input type="password" class="form-control" id="repassword" name="repwd" placeholder="Repeat password"/>
+                                                    <input type="password" class="form-control" id="repwd" name="repwd" placeholder="Repeat password"/>
                                                     <i class="icon-retweet"></i>
                                                 </span>
                                             </label>
@@ -301,16 +301,16 @@
                     required: true,
                     email: true
                 },
-                password: {
+                pwd: {
                     required: true,
                     minlength: 5
                 },
-                repassword: {
+                repwd: {
                     required: true,
                     minlength: 5,
-                    equalTo: "#password"
+                    equalTo: "#pwd"
                 },
-                username: {
+                login: {
                     required: true
                 },
                 agree: 'required'
@@ -321,10 +321,10 @@
                     required: "Please provide a valid email.",
                     email: "Please provide a valid email."
                 },
-                username: {
+                login: {
                     required: "Please"
                 },
-                password: {
+                pwd: {
                     required: "Please specify a password.",
                     minlength: "Please specify a secure password."
                 },
@@ -337,7 +337,12 @@
 
             highlight: function (e) {
                 $(e).next("i").removeClass('green').addClass('red');
-                $(e).parent().parent("label").removeClass('has-info').addClass('has-error');
+
+                if($(e).is(':checkbox')){
+                    $(e).parent("label").removeClass('has-info').addClass('has-error');
+                }else{
+                    $(e).parent().parent("label").removeClass('has-info').addClass('has-error');
+                }
             },
 
             success: function (e) {
