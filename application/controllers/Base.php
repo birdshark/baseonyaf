@@ -1,16 +1,19 @@
 <?php
-class BaseController extends Yaf\Controller_Abstract{
 
+
+class BaseController extends Yaf\Controller_Abstract{
+    private $IS_PJAX = false;
 	public function init(){
 		//如果为PJAX则手动返回
 		if(array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']){
 			Yaf\Dispatcher::getInstance()->disableView();
 			Yaf\Dispatcher::getInstance()->autoRender(false);
-			$this->getView()->assign("pjax",true);
+            $this->IS_PJAX = true;
 		}
 		$this->getView()->assign("title",$this->title);
 		$this->getView()->assign("user",Yaf\Session::getInstance()->get("user"));
 		$action = $this->getRequest()->getActionName();
+        $this->getView()->assign("pjax",$this->IS_PJAX);
 		if(($action!=="dologout")){
 			 $this->_check_login();
 		}
