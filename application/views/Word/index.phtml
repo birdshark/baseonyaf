@@ -257,6 +257,15 @@
         <!-- /.col --></div>
     <!-- /.row --></div>
 <!-- /.page-content -->
+<script src="/public/assets/js/prettify.js"></script>
+<script type="text/javascript">
+    jQuery(function($) {
+        window.prettyPrint && prettyPrint();
+        $('#id-check-horizontal').removeAttr('checked').on('click', function(){
+            $('#dt-list-1').toggleClass('dl-horizontal').prev().html(this.checked ? '&lt;dl class="dl-horizontal"&gt;' : '&lt;dl&gt;');
+        });
+    })
+</script>
 </div>
 <!-- /.main-content -->
 
@@ -265,41 +274,6 @@
 <{else}>
 <{/if}>
 <!-- /.main-container -->
-
-
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-<!--[if !IE]> -->
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-</script>
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='http://www.ace.com/public/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-<script src="http://www.ace.com/public/assets/js/bootstrap.min.js"></script>
-<script src="http://www.ace.com/public/assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-<!--<script src="http://www.ace.com/public/assets/js/prettify.js"></script>-->
-<script type="text/javascript">
-    jQuery(function ($) {
-        window.prettyPrint && prettyPrint();
-        $('#id-check-horizontal').removeAttr('checked').on('click', function () {
-            $('#dt-list-1').toggleClass('dl-horizontal').prev().html(this.checked ? '&lt;dl class="dl-horizontal"&gt;' : '&lt;dl&gt;');
-        });
-
-    })
-</script>
 <div style="display: none"></div>
 </body>
 </html>

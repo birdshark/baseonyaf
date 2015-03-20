@@ -150,36 +150,16 @@
         <!-- /.col --></div>
     <!-- /.row --></div>
 <!-- /.page-content -->
-</div>
-<!-- /.main-content -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
-<!-- /.main-container -->
-
-<!-- basic scripts -->
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='http://www.ace.com/public/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-
-
-
-
+<!-- page specific plugin scripts -->
+<script src="/public/assets/js/jquery.nestable.min.js"></script>
 <!-- inline scripts related to this page -->
-
 <script type="text/javascript">
-    jQuery(function ($) {
+    jQuery(function($){
 
         $('.dd').nestable();
 
-        $('.dd-handle a').on('mousedown', function (e) {
+        $('.dd-handle a').on('mousedown', function(e){
             e.stopPropagation();
         });
 
@@ -187,6 +167,14 @@
 
     });
 </script>
+</div>
+<!-- /.main-content -->
+
+<{if !$pjax}>
+<{include file='../Public/footer.phtml'}>
+<{else}>
+<{/if}>
+
 <div style="display: none"></div>
 </body>
 </html>

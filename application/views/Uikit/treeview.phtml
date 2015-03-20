@@ -52,48 +52,31 @@
         <!-- /.col --></div>
     <!-- /.row --></div>
 <!-- /.page-content -->
-</div>
-<!-- /.main-content -->
-
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
-<!-- /.main-container -->
-
-<!-- basic scripts -->
-
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
 
 <script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='http://www.ace.com/public/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-<script type="text/javascript">
-    jQuery(function ($) {
+    jQuery(function($){
+
         $('#tree1').ace_tree({
-            dataSource: treeDataSource,
-            multiSelect: true,
-            loadingHTML: '<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
-            'open-icon': 'icon-minus',
-            'close-icon': 'icon-plus',
-            'selectable': true,
-            'selected-icon': 'icon-ok',
-            'unselected-icon': 'icon-remove'
+            dataSource: treeDataSource ,
+            multiSelect:true,
+            loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+            'open-icon' : 'icon-minus',
+            'close-icon' : 'icon-plus',
+            'selectable' : true,
+            'selected-icon' : 'icon-ok',
+            'unselected-icon' : 'icon-remove'
         });
+
         $('#tree2').ace_tree({
-            dataSource: treeDataSource2,
-            loadingHTML: '<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
-            'open-icon': 'icon-folder-open',
-            'close-icon': 'icon-folder-close',
-            'selectable': false,
-            'selected-icon': null,
-            'unselected-icon': null
+            dataSource: treeDataSource2 ,
+            loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+            'open-icon' : 'icon-folder-open',
+            'close-icon' : 'icon-folder-close',
+            'selectable' : false,
+            'selected-icon' : null,
+            'unselected-icon' : null
         });
+
 
 
         /**
@@ -111,6 +94,13 @@
          */
     });
 </script>
+</div>
+<!-- /.main-content -->
+
+<{if !$pjax}>
+<{include file='../Public/footer.phtml'}>
+<{else}>
+<{/if}>
 <div style="display: none"></div>
 </body>
 </html>

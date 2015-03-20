@@ -8,13 +8,12 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-namespace Think\Db\Driver;
-use Think\Db;
-defined('THINK_PATH') or exit();
+
+defined('APP_PATH') or exit();
 /**
  * Mysqli数据库驱动类
  */
-class Mysqli extends Db{
+class Core_Driver_Mysqli extends Core_Db{
 
     /**
      * 架构函数 读取数据库配置信息

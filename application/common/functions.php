@@ -20,6 +20,12 @@
  * @param mixed $default 默认值
  * @return mixed
  */
+
+define("MODULE_NAME","");
+define("MODULE_PATH","models");
+define("EXT",".php");
+define("MEMORY_LIMIT_ON",true);
+
 function C($name=null, $value=null,$default=null) {
     $_config = Yaf\Registry::get("config")->toArray();
     // 无参数时获取所有

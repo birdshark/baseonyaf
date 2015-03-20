@@ -45,9 +45,9 @@ class Core_Driver_Mysql extends Core_Db{
             // 是否长连接
             $pconnect   = !empty($config['params']['persist'])? $config['params']['persist']:$this->pconnect;
             if($pconnect) {
-                $this->linkID[$linkNum] = mysql_pconnect( $host, $config['username'], $config['password'],131072);
+                $this->linkID[$linkNum] = @mysql_pconnect( $host, $config['username'], $config['password'],131072);
             }else{
-                $this->linkID[$linkNum] = mysql_connect( $host, $config['username'], $config['password'],true,131072);
+                $this->linkID[$linkNum] = @mysql_connect( $host, $config['username'], $config['password'],true,131072);
             }
             if ( !$this->linkID[$linkNum] || (!empty($config['database']) && !mysql_select_db($config['database'], $this->linkID[$linkNum])) ) {
                 E(mysql_error());
