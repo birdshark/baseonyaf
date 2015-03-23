@@ -476,65 +476,51 @@
         <!-- /.col --></div>
     <!-- /.row --></div>
 <!-- /.page-content -->
-</div>
-<!-- /.main-content -->
+<!-- inline scripts related to this page -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
-<!-- /.main-container -->
+<!-- page specific plugin scripts -->
 
-<!-- basic scripts -->
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-</script>
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='http://www.ace.com/public/assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
+<script src="/public/assets/js/fuelux/fuelux.wizard.min.js"></script>
+<script src="/public/assets/js/jquery.validate.min.js"></script>
+<script src="/public/assets/js/additional-methods.min.js"></script>
+<script src="/public/assets/js/bootbox.min.js"></script>
+<script src="/public/assets/js/jquery.maskedinput.min.js"></script>
+<script src="/public/assets/js/select2.min.js"></script>
 
 <script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='http://www.ace.com/public/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-
-<script type="text/javascript">
-    jQuery(function ($) {
+    jQuery(function($) {
 
         $('[data-rel=tooltip]').tooltip();
 
-        $(".select2").css('width', '200px').select2({allowClear: true})
-            .on('change', function () {
+        $(".select2").css('width','200px').select2({allowClear:true})
+            .on('change', function(){
                 $(this).closest('form').validate().element($(this));
             });
 
 
         var $validation = false;
-        $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
-            if (info.step == 1 && $validation) {
-                if (!$('#validation-form').valid()) return false;
+        $('#fuelux-wizard').ace_wizard().on('change' , function(e, info){
+            if(info.step == 1 && $validation) {
+                if(!$('#validation-form').valid()) return false;
             }
-        }).on('finished', function (e) {
+        }).on('finished', function(e) {
             bootbox.dialog({
                 message: "Thank you! Your information was successfully saved!",
                 buttons: {
-                    "success": {
-                        "label": "OK",
-                        "className": "btn-sm btn-primary"
+                    "success" : {
+                        "label" : "OK",
+                        "className" : "btn-sm btn-primary"
                     }
                 }
             });
-        }).on('stepclick', function (e) {
+        }).on('stepclick', function(e){
             //return false;//prevent clicking on steps
         });
 
 
-        $('#skip-validation').removeAttr('checked').on('click', function () {
+        $('#skip-validation').removeAttr('checked').on('click', function(){
             $validation = this.checked;
-            if (this.checked) {
+            if(this.checked) {
                 $('#sample-form').hide();
                 $('#validation-form').removeClass('hide');
             }
@@ -545,10 +531,11 @@
         });
 
 
+
         //documentation : http://docs.jquery.com/Plugins/Validation/validate
 
 
-        $.mask.definitions['~'] = '[+-]';
+        $.mask.definitions['~']='[+-]';
         $('#phone').mask('(999) 999-9999');
 
         jQuery.validator.addMethod("phone", function (value, element) {
@@ -562,7 +549,7 @@
             rules: {
                 email: {
                     required: true,
-                    email: true
+                    email:true
                 },
                 password: {
                     required: true,
@@ -628,15 +615,15 @@
             },
 
             errorPlacement: function (error, element) {
-                if (element.is(':checkbox') || element.is(':radio')) {
+                if(element.is(':checkbox') || element.is(':radio')) {
                     var controls = element.closest('div[class*="col-"]');
-                    if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
                     else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
                 }
-                else if (element.is('.select2')) {
+                else if(element.is('.select2')) {
                     error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
                 }
-                else if (element.is('.chosen-select')) {
+                else if(element.is('.chosen-select')) {
                     error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
                 }
                 else error.insertAfter(element.parent());
@@ -649,10 +636,19 @@
         });
 
 
+
+
         $('#modal-wizard .modal-header').ace_wizard();
         $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
     })
 </script>
+</div>
+<!-- /.main-content -->
+
+<{if !$pjax}>
+<{include file='../Public/footer.phtml'}>
+<{else}>
+<{/if}>
 <div style="display: none"></div>
 </body>
 </html>

@@ -553,70 +553,22 @@
 <!-- /.page-content -->
 </div>
 <!-- /.main-content -->
-
 <{if !$pjax}>
 <{include file='../Public/footer.phtml'}>
 <{else}>
 <{/if}>
-<!-- /.main-container -->
-
-<!-- basic scripts -->
-
-<!--[if !IE]> -->
-
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-<!--[if !IE]> -->
-
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-<script
-    src="http://www.ace.com/public/assets/js/bootstrap.min.js"></script>
-<script
-    src="http://www.ace.com/public/assets/js/typeahead-bs2.min.js"></script>
-
 <!-- page specific plugin scripts -->
-
-<script
-    src="http://www.ace.com/public/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script
-    src="http://www.ace.com/public/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script
-    src="http://www.ace.com/public/assets/js/jquery.slimscroll.min.js"></script>
-
-<!-- ace scripts -->
-
-<script
-    src="http://www.ace.com/public/assets/js/ace-elements.min.js"></script>
-<script src="http://www.ace.com/public/assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
+<script src="/public/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/public/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/public/assets/js/jquery.slimscroll.min.js"></script>
 
 <script type="text/javascript">
-    jQuery(function ($) {
+    jQuery(function($) {
 
-        $('#simple-colorpicker-1').ace_colorpicker({pull_right: true}).on('change', function () {
+        $('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
             var color_class = $(this).find('option:selected').data('class');
             var new_class = 'widget-header';
-            if (color_class != 'default')  new_class += ' header-color-' + color_class;
+            if(color_class != 'default')  new_class += ' header-color-'+color_class;
             $(this).closest('.widget-header').attr('class', new_class);
         });
 
@@ -626,7 +578,7 @@
             var $this = $(this);
             $this.slimScroll({
                 height: $this.data('height') || 100,
-                railVisible: true
+                railVisible:true
             });
         });
 
@@ -639,13 +591,13 @@
             // Portlets (boxes)
         $('.widget-container-span').sortable({
             connectWith: '.widget-container-span',
-            items: '> .widget-box',
-            opacity: 0.8,
-            revert: true,
-            forceHelperSize: true,
+            items:'> .widget-box',
+            opacity:0.8,
+            revert:true,
+            forceHelperSize:true,
             placeholder: 'widget-placeholder',
-            forcePlaceholderSize: true,
-            tolerance: 'pointer'
+            forcePlaceholderSize:true,
+            tolerance:'pointer'
         });
 
     });
