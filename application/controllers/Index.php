@@ -27,7 +27,7 @@ class IndexController extends BaseController {
 			exit;
 		}else{
 			if($username==$user['login']&&$password==$user['pwd']){
-				Yaf\Session::getInstance()->__set("user",array("username"=>$username,"nick"=>$user['nick']));
+				Yaf_Session::getInstance()->__set("user",array("username"=>$username,"nick"=>$user['nick']));
 				echo json_encode(array("code"=>200));
 			}else{
 				echo json_encode(array("code"=>201));
@@ -46,7 +46,7 @@ class IndexController extends BaseController {
 		if(!$user){
 			$result = $userM->insertUser($data);
 			if($result){
-				Yaf\Session::getInstance()->__set("user",array("username"=>$data['login'],"nick"=>$data['login']));
+				Yaf_Session::getInstance()->__set("user",array("username"=>$data['login'],"nick"=>$data['login']));
 				echo json_encode(array("code"=>200));
 			}else{
 				echo json_encode(array("code"=>201));
@@ -58,7 +58,7 @@ class IndexController extends BaseController {
 	}
 	
 	public function doLogoutAction(){
-        Yaf\Session::getInstance()->del("user");
+        Yaf_Session::getInstance()->del("user");
 		$this->toLogin();
 		return false;
 	}

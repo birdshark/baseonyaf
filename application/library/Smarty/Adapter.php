@@ -9,7 +9,7 @@
 
 require "SmartyBC.class.php";
 
-class Smarty_Adapter implements Yaf\View_Interface
+class Smarty_Adapter implements Yaf_View_Interface
 {
     /**
      * Smarty object

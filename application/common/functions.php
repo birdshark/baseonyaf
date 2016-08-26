@@ -27,7 +27,7 @@ define("EXT",".php");
 define("MEMORY_LIMIT_ON",true);
 
 function C($name=null, $value=null,$default=null) {
-    $_config = Yaf\Registry::get("config")->toArray();
+    $_config = Yaf_Registry::get("config")->toArray();
     // 无参数时获取所有
     if (empty($name)) {
         return $_config;

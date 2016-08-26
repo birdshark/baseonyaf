@@ -1,17 +1,17 @@
 <?php
 
 
-class BaseController extends Yaf\Controller_Abstract{
+class BaseController extends Yaf_Controller_Abstract{
     private $IS_PJAX = false;
 	public function init(){
 		//如果为PJAX则手动返回
 		if(array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']){
-			Yaf\Dispatcher::getInstance()->disableView();
-			Yaf\Dispatcher::getInstance()->autoRender(false);
+			Yaf_Dispatcher::getInstance()->disableView();
+			Yaf_Dispatcher::getInstance()->autoRender(false);
             $this->IS_PJAX = true;
 		}
 		$this->getView()->assign("title",$this->title);
-		$this->getView()->assign("user",Yaf\Session::getInstance()->get("user"));
+		$this->getView()->assign("user",Yaf_Session::getInstance()->get("user"));
 		$action = $this->getRequest()->getActionName();
         $this->getView()->assign("pjax",$this->IS_PJAX);
 		if(($action!=="dologout")){
@@ -24,7 +24,7 @@ class BaseController extends Yaf\Controller_Abstract{
 	 */
 	private function _check_login(){
 		$controll = $this->getRequest()->getControllerName();
-		if(Yaf\Session::getInstance()->has("user")){
+		if(Yaf_Session::getInstance()->has("user")){
 			if($controll == "Index"){
 				$this->toHome();
 			}
