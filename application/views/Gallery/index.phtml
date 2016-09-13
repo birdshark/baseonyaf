@@ -1,7 +1,6 @@
-<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
     <div class="page-header">
         <h1>
@@ -240,10 +239,9 @@
 </div><!-- /.page-content -->
 </div><!-- /.main-content -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 <script src="/public/assets/js/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
     jQuery(function ($) {

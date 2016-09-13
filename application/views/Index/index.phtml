@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title><{$title}> - Bootstrap后台管理系统模版Ace下载</title>
+    <title><?php echo $title; ?> - Bootstrap后台管理系统模版Ace下载</title>
     <meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文"/>
     <meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -220,7 +220,8 @@
 
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    <input type="password" class="form-control" id="repwd" name="repwd" placeholder="Repeat password"/>
+                                                    <input type="password" class="form-control" id="repwd" name="repwd"
+                                                           placeholder="Repeat password"/>
                                                     <i class="icon-retweet"></i>
                                                 </span>
                                             </label>
@@ -338,9 +339,9 @@
             highlight: function (e) {
                 $(e).next("i").removeClass('green').addClass('red');
 
-                if($(e).is(':checkbox')){
+                if ($(e).is(':checkbox')) {
                     $(e).parent("label").removeClass('has-info').addClass('has-error');
-                }else{
+                } else {
                     $(e).parent().parent("label").removeClass('has-info').addClass('has-error');
                 }
             },
@@ -362,13 +363,13 @@
     });
     $("#regist").click(function () {
         if (!$('#registForm').valid()) return false;
-       var data = $("#registForm").serialize();
+        var data = $("#registForm").serialize();
         $.post("/index/index/doRegist", data, function (json) {
             if (json.code == 200) {
                 self.location.href = "/console/";
-            }else if(json.code == 199){
+            } else if (json.code == 199) {
                 alert("该用户名已经被注册!");
-            }else if(json.code == 201){
+            } else if (json.code == 201) {
                 alert("似乎除了点问题,再试试吧!");
             }
         }, "JSON");

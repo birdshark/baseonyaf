@@ -1,7 +1,6 @@
-<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
     <div class="page-header">
         <h1>Form Elements
@@ -1312,10 +1311,9 @@ block-level help text here.</span> <label class="pull-right"> <input
 </div>
 <!-- /.main-content -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 <div style="display: none"></div>
 </body>
 </html>

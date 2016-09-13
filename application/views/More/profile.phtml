@@ -1,7 +1,6 @@
-<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+	include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
 <div class="page-header">
 <h1>User Profile Page <small> <i class="icon-double-angle-right"></i> 3
@@ -1256,10 +1255,9 @@ Reset</button>
 </div>
 <!-- /.main-content -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+	include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 <!-- /.main-container -->
 
 <!-- basic scripts -->

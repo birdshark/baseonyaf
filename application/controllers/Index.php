@@ -14,14 +14,19 @@ class IndexController extends BaseController {
 	}
 
 	public function indexAction() {
+
         return true;
 	}
 	
 	public function doLoginAction(){
 		$username = $this->getRequest()->getPost("username","");
 		$password = $this->getRequest()->getPost("password","");
+		xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY);
 		$userM = D("User");
 		$user = $userM->selectUser($username);
+		$xhprof_data = xhprof_disable();
+		$runs = new Xhprof_Lib_Utils_Runs();
+		$runs->save_run($xhprof_data, 'yaf');
 		if(!$user){
 			echo json_encode(array("code"=>201));
 			exit;

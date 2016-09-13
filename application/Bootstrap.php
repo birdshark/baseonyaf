@@ -20,7 +20,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
 		//注册一个插件
-		$objSamplePlugin = new SamplePlugin();
+		$objSamplePlugin = new CommonPlugin();
 		$dispatcher->registerPlugin($objSamplePlugin);
 	}
 
@@ -31,9 +31,9 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
 		//在这里注册自己的路由协议,默认使用简单路由
 	}
-	
+
 	public function _initView(Yaf_Dispatcher $dispatcher){
-		$smarty = new Smarty_Adapter(null, Yaf_Application::app()->getConfig()->smarty);
-		$dispatcher->setView($smarty);
+//		$smarty = new Smarty_Adapter(null, Yaf_Application::app()->getConfig()->smarty);
+//		$dispatcher->setView($smarty);
 	}
 }

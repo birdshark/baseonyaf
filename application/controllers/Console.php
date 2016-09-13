@@ -8,6 +8,6 @@ class ConsoleController extends BaseController{
 	}
 	
 	public function indexAction(){
-		$this->pJaxRender();
+		
 	}
 }

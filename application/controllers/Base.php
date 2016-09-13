@@ -23,8 +23,9 @@ class BaseController extends Yaf_Controller_Abstract{
 	 * 检查是否已经登陆
 	 */
 	private function _check_login(){
+		$user = Yaf_Session::getInstance()->get("user");
 		$controll = $this->getRequest()->getControllerName();
-		if(Yaf_Session::getInstance()->has("user")){
+		if($user){
 			if($controll == "Index"){
 				$this->toHome();
 			}
@@ -48,7 +49,6 @@ class BaseController extends Yaf_Controller_Abstract{
 	protected function toHome(){
 		$this->getResponse()->setRedirect("/console/");
 	}
-
 	/**
 	 * @return bool
 	 * pjax模式

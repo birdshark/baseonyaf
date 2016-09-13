@@ -1,8 +1,6 @@
-﻿<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
-
+﻿<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
     <div class="page-header">
         <h1>控制台
@@ -1071,18 +1069,10 @@ ago</span></div>
 </div>
 <!-- /.main-content -->
 
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
-
-<!-- /.main-container -->
-
-<!-- basic scripts -->
-<{literal}>
-<!-- inline scripts related to this page -->
-<{/literal}>
 <div style="display: none"></div>
 </body>
 </html>

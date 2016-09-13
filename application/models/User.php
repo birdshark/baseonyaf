@@ -4,11 +4,7 @@
  * @desc sample数据获取类, 可以访问数据库，文件，其它系统等
  * @author bird_shark\bird
  */
-class UserModel extends Core_ModelMain{
-    public function __construct() {
-        parent::__construct();
-    }
-
+class UserModel extends Core_Model_Mongodb{
 
     /**
      * @param $name
@@ -16,20 +12,24 @@ class UserModel extends Core_ModelMain{
      */
     public function selectUser($name) {
         $result = $this->where(array("login"=>$name))->find();
+        if(is_object($result)){
+            $result = json_decode(json_encode($result),true);
+        }
         return $result;
     }
 
     public function insertUser($data){
-        $formate = $this->data_formate($data);
-        $result = $this->add($formate);
+        $format = $this->data_format($data);
+        $result = $this->add($format);
         return $result;
     }
+    
 
-    private function data_formate($data){
-        $formate = array();
-        $formate['login'] = $data['login'];
-        $formate['pwd'] = $data['pwd'];
-        $formate['email'] = $data['email'];
-        return $formate;
+    private function data_format($data){
+        $format = array();
+        $format['login'] = $data['login'];
+        $format['pwd'] = $data['pwd'];
+        $format['email'] = $data['email'];
+        return $format;
     }
 }

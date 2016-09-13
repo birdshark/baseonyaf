@@ -1,7 +1,6 @@
-<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
     <div class="page-header">
         <h1>
@@ -638,10 +637,9 @@
 </script>
 </div>
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+    include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 <div style="display: none"></div>
 </body>
 </html>

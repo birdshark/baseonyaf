@@ -1,7 +1,6 @@
-<{if !$pjax}>
-<{include file='../Public/header.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+	include VIEWS_PATH.'../Public/header.phtml';
+}?>
 <div class="page-content" id="main">
 <div class="page-header">
 <h1>Pricing Tables <small> <i class="icon-double-angle-right"></i> Large
@@ -321,10 +320,9 @@
 </div>
 <!-- /.main-content -->
 
-<{if !$pjax}>
-<{include file='../Public/footer.phtml'}>
-<{else}>
-<{/if}>
+<?php if(!$pjax){
+	include VIEWS_PATH.'../Public/footer.phtml';
+}?>
 <!-- /.main-container -->
 
 <!-- basic scripts -->
